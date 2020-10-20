@@ -68,17 +68,4 @@ router.delete('/:id', (req, res) => {
   })
 })
 
-// recupération liste de donnée par rapport à une jointure
-router.get('/:idUser/friends', (req, res) => {
-  const idUser = req.params.idUser;
-
-  connection.query('SELECT f.lastname, f.firstname FROM user_friend as uf JOIN friend as f ON f.id = uf.id_friend JOIN user as u ON u.id = uf.id_user WHERE u.id = ? ', idUser, (err, results) => {
-    if(err) {
-      res.sendStatus(500)
-    } else {
-      res.json(results)
-    }
-  })
-})
-
 module.exports = router; 
